@@ -4,8 +4,13 @@ import {
   View, 
   Text, 
   TextInput,
-  TouchableOpacity
 } from 'react-native';
+
+//components
+import { 
+  AddNewSkillButton 
+} from './components/AddNewSkillButton/AddNewSkillButton';
+import { Skill } from './components/Skill/Skill';
 
 //styles
 import { styles } from './styles';
@@ -38,15 +43,7 @@ export const Home = () => {
           onChangeText={setNewSkill}
           style={styles.input} 
         />
-        <TouchableOpacity 
-          onPress={handleAddNewSkill}
-          activeOpacity={0.7}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>
-            Add
-          </Text>
-        </TouchableOpacity>
+        <AddNewSkillButton onAddNewSkill={handleAddNewSkill} />
         <Text 
           style={[styles.title, {
             marginTop: 50,
@@ -57,17 +54,7 @@ export const Home = () => {
           My Skills
         </Text>
         {skills.map((skill, index) => (
-          <TouchableOpacity 
-            key={index} 
-            activeOpacity={0.7}
-            style={styles.skillButton} 
-          >
-            <Text 
-              style={styles.skillText}
-            >
-              {skill}
-            </Text>
-          </TouchableOpacity>
+          <Skill key={index} skill={skill} />
         ))}
       </View>
     </SafeAreaView>
