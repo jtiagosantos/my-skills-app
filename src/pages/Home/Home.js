@@ -4,6 +4,7 @@ import {
   View, 
   Text, 
   TextInput,
+  FlatList,
 } from 'react-native';
 
 //components
@@ -54,9 +55,12 @@ export const Home = () => {
           My Skills
         </Text>
         {!!skills.length ? (
-          skills.map((skill, index) => (
-            <Skill key={index} skill={skill} />
-          ))
+          <FlatList 
+            data={skills}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => <Skill skill={item} />}
+            showsVerticalScrollIndicator={false}
+          />
         ) : (
           <Text style={styles.noSkillsText}>
             Add a skill to list it here
