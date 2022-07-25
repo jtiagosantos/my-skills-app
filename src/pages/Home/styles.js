@@ -31,5 +31,17 @@ export const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 17,
     fontWeight: 'bold'
-  }
+  },
+  skillButton: {
+    backgroundColor: '#1F1E25',
+    padding: 15,
+    borderRadius: 7,
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  skillText: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
