@@ -20,4 +20,10 @@ export const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 7,
   },
+  noSkillsText: {
+    color: '#CCC',
+    fontSize: 13,
+    textAlign: 'center',
+    marginTop: 50,
+  }
 });

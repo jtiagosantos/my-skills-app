@@ -53,9 +53,15 @@ export const Home = () => {
         >
           My Skills
         </Text>
-        {skills.map((skill, index) => (
-          <Skill key={index} skill={skill} />
-        ))}
+        {!!skills.length ? (
+          skills.map((skill, index) => (
+            <Skill key={index} skill={skill} />
+          ))
+        ) : (
+          <Text style={styles.noSkillsText}>
+            Add a skill to list it here
+          </Text>
+        )}
       </View>
     </SafeAreaView>
   );
