@@ -40,6 +40,12 @@ export const Home = () => {
     }
   }
 
+  const handleRemoveSkill = (skillId: string) => {
+    setSkills([
+      ...skills.filter((skill) => skill.id !== skillId)
+    ]);
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -69,7 +75,8 @@ export const Home = () => {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <Skill 
-                skill={item.name}
+                skill={item.name} 
+                onPress={() => handleRemoveSkill(item.id)}
               />
             )}
             showsVerticalScrollIndicator={false}
