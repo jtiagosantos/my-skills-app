@@ -6,6 +6,7 @@ import {
   TextInput,
   FlatList,
 } from 'react-native';
+import uuid from 'react-native-uuid';
 
 //components
 import { 
@@ -13,17 +14,25 @@ import {
 } from './components/AddNewSkillButton/AddNewSkillButton';
 import { Skill } from './components/Skill/Skill';
 
+//types
+import * as T from './types';
+
 //styles
 import { styles } from './styles';
 
 export const Home = () => {
   const [newSkill, setNewSkill] = useState('');
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<Array<T.Skill>>([]);
 
   const handleAddNewSkill = () => {
     if (!!newSkill) {
+      const skill = {
+        id: uuid.v4() as string,
+        name: newSkill,
+      };
+
       setSkills((prevState) => [
-        newSkill,
+        skill,
         ...prevState,
       ]);
   
@@ -44,7 +53,7 @@ export const Home = () => {
           onChangeText={setNewSkill}
           style={styles.input} 
         />
-        <AddNewSkillButton onAddNewSkill={handleAddNewSkill} />
+        <AddNewSkillButton onPress={handleAddNewSkill} />
         <Text 
           style={[styles.title, {
             marginTop: 50,
@@ -57,8 +66,12 @@ export const Home = () => {
         {!!skills.length ? (
           <FlatList 
             data={skills}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => <Skill skill={item} />}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <Skill 
+                skill={item.name}
+              />
+            )}
             showsVerticalScrollIndicator={false}
           />
         ) : (
